@@ -1,0 +1,13 @@
+<div class="mb-5 flex flex-wrap items-center gap-2">
+  @for (item of filters; track $index) {
+    <app-button-filter
+      (click)="select(item.title)"
+      onkeydown=""
+      [infoElement]="item"
+      [isPressed]="selectItem === item.title"
+    ></app-button-filter>
+    @if (needSeparator && $index === 0) {
+      <span class="mx-1 h-6 w-px bg-line" aria-hidden="true"></span>
+    }
+  }
+</div>

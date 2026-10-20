@@ -1,0 +1,88 @@
+.splash {
+  @apply focus-visible:outline-none;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: transparent;
+  text-align: center;
+}
+
+.splash::backdrop {
+  background-color: rgba(255, 255, 255, 0.434);
+  backdrop-filter: blur(5px);
+}
+
+.splash-content {
+  @apply flex flex-col items-center;
+}
+
+.loading {
+  width: 16rem;
+  height: auto;
+  display: inline-block;
+}
+
+.loader {
+  margin-top: 10px;
+  display: block;
+  height: 10px;
+  width: 120px;
+  background-image: linear-gradient(#81abfb 20px, transparent 0),
+    linear-gradient(#007eae 20px, transparent 0),
+    linear-gradient(#007eae 20px, transparent 0),
+    linear-gradient(#007eae 20px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 20px auto;
+  background-position: 0 0, 40px 0, 80px 0, 120px 0;
+  animation: pgfill 1s linear infinite;
+}
+
+@keyframes pgfill {
+  0% {
+    background-image: linear-gradient(#007eae 20px, transparent 0),
+      linear-gradient(#007eae 20px, transparent 0),
+      linear-gradient(#007eae 20px, transparent 0),
+      linear-gradient(#007eae 20px, transparent 0);
+  }
+
+  25% {
+    background-image: linear-gradient(var(--mp-yellow) 20px, transparent 0),
+      linear-gradient(#007eae 20px, transparent 0),
+      linear-gradient(#007eae 20px, transparent 0),
+      linear-gradient(#007eae 20px, transparent 0);
+  }
+
+  50% {
+    background-image: linear-gradient(var(--mp-secondary) 20px, transparent 0),
+      linear-gradient(var(--mp-secondary) 20px, transparent 0),
+      linear-gradient(#007eae 20px, transparent 0),
+      linear-gradient(#007eae 20px, transparent 0);
+  }
+
+  75% {
+    background-image: linear-gradient(var(--mp-secondary) 20px, transparent 0),
+      linear-gradient(var(--mp-secondary) 20px, transparent 0),
+      linear-gradient(var(--mp-secondary) 20px, transparent 0),
+      linear-gradient(#007eae 20px, transparent 0);
+  }
+
+  100% {
+    background-image: linear-gradient(var(--mp-secondary) 20px, transparent 0),
+      linear-gradient(var(--mp-secondary) 20px, transparent 0),
+      linear-gradient(var(--mp-secondary) 20px, transparent 0),
+      linear-gradient(var(--mp-secondary) 20px, transparent 0);
+  }
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

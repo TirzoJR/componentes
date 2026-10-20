@@ -1,0 +1,65 @@
+<div class="w-full overflow-x-auto">
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          @for (col of columns(); track $index) {
+            <th class="{{ col?.colStyle }}" [class.sticky]="col.stickyOn">
+              <div class="flex items-center justify-center gap-2">
+                {{ col.headerTitle }}
+
+                @if (col.sortable?.active) {
+                  <button type="button" (click)="onSort(col)" class="sort-button">
+                    <span
+                      [innerHTML]="
+                        sortState().colToSort === col.key
+                          ? sortState().order === 'asc'
+                            ? '&#9650;'
+                            : '&#9660;'
+                          : '&#9651;'
+                      "
+                      [class.text-white]="sortState().colToSort === col.key"
+                      [class.opacity-50]="sortState().colToSort !== col.key"
+                    >
+                    </span>
+                  </button>
+                }
+              </div>
+            </th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @if (paginatedData.length === 0) {
+          <tr>
+            <td [attr.colspan]="columns().length" class="text-center py-8 text-gray-500">No hay datos para mostrar</td>
+          </tr>
+        } @else {
+          @for (row of paginatedData; track $index) {
+            <tr>
+              @for (col of columns(); track $index) {
+                <td class="{{ col?.colStyle }} {{ col?.cellClass }}" [class.sticky]="col.stickyOn">
+                  @if (col.template) {
+                    <ng-container>
+                      <ng-container *ngTemplateOutlet="col.template; context: { $implicit: row }"></ng-container>
+                    </ng-container>
+                  } @else {
+                    <div [innerHTML]="row[col.key]"></div>
+                  }
+                </td>
+              }
+            </tr>
+          }
+        }
+      </tbody>
+    </table>
+  </div>
+  <o-paginator
+    [totalItems]="totalItems()"
+    [itemsPerPage]="itemsPerPage()"
+    [currentPage]="currentPage()"
+    (pageChange)="onPageChange($event)"
+    (itemsPerPageChange)="onItemsPerPageChange($event)"
+    [itemsPerPageOptions]="itemsPerPageOptions()"
+  />
+</div>

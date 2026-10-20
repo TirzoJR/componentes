@@ -1,0 +1,23 @@
+<button
+  [type]="typeButton()"
+  [disabled]="disabled() || isLoading()"
+  class="o-button-container"
+  [ngClass]="[type(), styled(), isLoading() ? 'loading' : '']"
+  >
+
+  @if (iconLeft() && !isLoading()) {
+  <div class="flex items-center">
+    <ng-container [ngTemplateOutlet]="iconLeft()"></ng-container>
+  </div>
+  }
+
+  <span class="truncate">{{ text() }}</span>
+
+  @if (isLoading()) {
+  <div class="animate-spin h-4 w-4 border-2 border-white/30 border-t-white rounded-full ml-2"></div>
+  } @else if (iconRight()) {
+  <div class="flex items-center">
+    <ng-container [ngTemplateOutlet]="iconRight()"></ng-container>
+  </div>
+  }
+</button>

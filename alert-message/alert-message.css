@@ -1,0 +1,11 @@
+.warning{
+  @apply bg-tint-warning text-warning;
+}
+
+.error{
+  @apply bg-tint-danger text-danger;
+}
+
+.success{
+  @apply bg-tint-success text-success;
+}

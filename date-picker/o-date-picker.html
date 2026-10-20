@@ -1,0 +1,47 @@
+<div class="flex flex-col w-full font-body">
+
+  @if (field()?.label) {
+  <label [for]="field()?.id || field()?.label" class="text-[#797980] text-sm font-medium ml-1 mb-4">
+    {{ field()?.label }}
+  </label>
+  }
+
+  <div class="relative w-full bg-transparent">
+    <div class="date-range-picker-field" [class.active-focus]="showCalendar()" [class.error-border]="activeErrorMessage"
+      [class.disabled]="isDisabled()" (click)="toggleCalendar()" onkeydown="">
+
+      <div class="flex items-center justify-between gap-2 px-4 py-[14px]">
+        <div class="input-containers" [formGroup]="rangeForm">
+          <input type="text" placeholder="DD/MM/YYYY" formControlName="start" readonly>
+
+          @if (isRange()) {
+          <span>-</span>
+          <input type="text" placeholder="DD/MM/YYYY" formControlName="end" readonly>
+          }
+        </div>
+
+        <app-icon iconName="calendar_month" iconColor="text-gray-400" size="sm" />
+      </div>
+    </div>
+
+    @if (showCalendar()) {
+    <div class="absolute left-0 z-50 animate-in fade-in zoom-in duration-200"
+      [ngClass]="position() === 'top' ? 'bottom-full mb-2' : 'top-full mt-2'">
+      <o-calendar [isRange]="isRange()" [rangeStart]="rangeStart" [rangeEnd]="rangeEnd"
+        (rangeSelected)="onRangeSelected($event)" [minDate]="transformMinDate()" [maxDate]="transformMaxDate()" />
+    </div>
+    }
+  </div>
+
+  @if (showHint()) {
+  <p class="hint text-[10px] text-gray-400 italic ml-1">
+    {{ isRange() ? 'DD/MM/YYYY - DD/MM/YYYY' : 'DD/MM/YYYY' }}
+  </p>
+  }
+
+  <div class="error-slot">
+    <p class="error-text" [class.visible]="activeErrorMessage">
+      {{ activeErrorMessage || '' }}
+    </p>
+  </div>
+</div>

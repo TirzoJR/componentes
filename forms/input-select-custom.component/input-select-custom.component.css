@@ -1,0 +1,22 @@
+.container-input {
+  flex-direction: flex;
+  width: 100%;
+}
+
+.input-custom {
+  @apply placeholder-disabled;
+  border:none;
+  border-radius: 15px;
+  padding: 10px 14px;
+  overflow: hidden;
+}
+
+.input-custom:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.input-content {
+  @apply flex border-gray-300 border-[1px] w-full bg-white pr-3;
+  border-radius: 15px;
+}

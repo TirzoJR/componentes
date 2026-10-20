@@ -1,0 +1,15 @@
+<div class="flex flex-col gap-6">
+  <app-kiosco-pending-requests-card
+    [count]="summary()?.pendingRequestsCount ?? 0"
+    (viewRequests)="onViewRequests()"
+  />
+
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6">
+    @for (card of summary()?.metrics ?? []; track card.key) {
+      <app-kiosco-summary-stat-card
+        [card]="card"
+        (filterSelect)="onFilterSelect($event)"
+      />
+    }
+  </div>
+</div>

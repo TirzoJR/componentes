@@ -1,0 +1,14 @@
+<a
+  aria-current="page"
+  class="flex items-center gap-2.5 rounded-xl px-3 py-2 transition-base hover:bg-app"
+  [routerLink]="dataSection.route"
+  routerLinkActive="selectSection"
+  data-discover="true"
+  >
+  <div
+  class="h-5 w-5 bg-disabled"
+  style="mask: url({{dataSection.icon}}) center / contain no-repeat;
+         -webkit-mask: url({{dataSection.icon}}) center / contain no-repeat;"
+></div>
+  <span class="flex-1 text-sm font-medium text-ink-soft">{{dataSection.name}}</span>
+</a>

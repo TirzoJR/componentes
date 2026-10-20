@@ -1,0 +1,27 @@
+<div
+  class="flex gap-3 rounded-xl border px-4 py-3 text-sm  border-transparent"
+  role="alert"
+  [ngClass]="{
+    'bg-tint-danger text-danger': variant === 'error',
+    'bg-tint-success text-success': variant === 'success',
+    'bg-tint-warning text-warning': variant === 'warning'
+  }"
+>
+  @if(variant === 'error'){
+    <app-icon iconName="warning"></app-icon>
+  }
+
+  @if(variant === 'success'){
+    <app-icon iconName="check"></app-icon>
+  }
+
+  @if(variant === 'warning'){
+    <app-icon iconName="warning"></app-icon>
+  }
+
+  <div class=" my-auto min-w-0 leading-relaxed">
+    <div class="font-semibold">{{title}}</div>
+    <div class="opacity-95">{{message}}</div>
+    <ng-content></ng-content>
+  </div>
+</div>

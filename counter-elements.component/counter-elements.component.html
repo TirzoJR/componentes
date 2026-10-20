@@ -1,0 +1,10 @@
+<span
+  onkeydown=""
+  class="grid size-5 place-items-center rounded-full text-[11px] font-semibold text-white"
+  [ngClass]="{
+    'bg-primary text-white': isSelected,
+    'bg-app text-ink-soft': !isSelected
+  }"
+>
+{{numItems}}
+</span>

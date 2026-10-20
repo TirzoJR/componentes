@@ -1,0 +1,11 @@
+<div [class]="containerClass()">
+  @for (toast of toasts(); track toast.id) {
+  <div class="toast" [ngClass]="toastTypeClass[toast.type]">
+    <app-icon [iconName]="iconTypes[toast.type]" size="xl" class="toast-icon" />
+    <p class="toast-message">{{ toast.message }}</p>
+    <button class="toast-close" (click)="close(toast.id)" type="button" aria-label="Cerrar">
+      <app-icon iconName="close" size="sm" />
+    </button>
+  </div>
+  }
+</div>

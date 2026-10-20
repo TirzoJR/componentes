@@ -1,0 +1,22 @@
+<label
+  class="flex cursor-pointer flex-col items-center gap-2 rounded-2xl border-2 border-dashed px-6 py-9 text-center transition-base border-line-strong bg-app/40 hover:border-primary/50"
+  (dragover)="$event.preventDefault()"
+  (drop)="fileDrop($event)"
+>
+  <app-icon [iconName]="iconName"></app-icon>
+
+  <span class="text-sm font-medium text-ink-soft">
+    {{ title }}
+  </span>
+
+  <span class="max-w-lg text-xs leading-relaxed text-muted">
+    {{ description }}
+  </span>
+
+  <input
+    (change)="fileInput($event)"
+    accept=".csv"
+    class="sr-only"
+    type="file"
+  />
+</label>

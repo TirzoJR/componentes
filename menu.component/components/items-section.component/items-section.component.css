@@ -1,0 +1,11 @@
+.selectSection{
+  @apply bg-tint-primary;
+}
+
+.selectSection div{
+  @apply bg-primary;
+}
+
+.selectSection span {
+  @apply text-primary;
+}

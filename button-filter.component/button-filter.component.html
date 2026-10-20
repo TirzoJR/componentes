@@ -1,0 +1,17 @@
+<button
+    (click)="changeStatus()"
+    aria-pressed="false"
+    class="inline-flex items-center gap-2 rounded-xl border px-3 py-2 text-sm font-medium transition-base "
+    [ngClass]="{
+      'border-primary  bg-tint-primary text-primary ': isPressed,
+      ' border-line-strong bg-surface text-ink-soft hover:bg-app': !isPressed
+    }"
+  >
+    {{infoElement.title}}
+
+    @if(needCounter){
+      <app-counter-elements [isSelected]="isPressed" [numItems]="infoElement.total"></app-counter-elements>
+    }
+
+  </button
+>

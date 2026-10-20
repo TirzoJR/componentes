@@ -1,0 +1,10 @@
+<div class="mb-5 last:mb-0">
+  <p class="mb-2 px-3 text-[11px] font-semibold tracking-wider text-faint uppercase">
+    {{nameSection}}
+  </p>
+  <div class="space-y-0.5 mb-5">
+    @for (option of itemsSection; track $index) {
+      <app-items-section [dataSection]="option"></app-items-section>
+    }
+  </div>
+</div>

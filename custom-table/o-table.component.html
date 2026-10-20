@@ -1,0 +1,84 @@
+<div class="w-full relative">
+  <div class="py-0 relative z-0" [class.not-padding]="!data().length">
+    <div class="shadow-md rounded-b-3xl rounded-t-3xl">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              @for (col of columns(); track $index) {
+                <th
+                  class="{{ col?.colStyle }}"
+                  [class.sortable]="col.sortable"
+                  [class.sticky]="col.stickyOn"
+                >
+                  @if (col.headerTemplate) {
+                    <ng-container *ngTemplateOutlet="col.headerTemplate"> </ng-container>
+                  } @else {
+                    {{ col.headerTitle }}
+                  }
+
+                  @if (col.sortable?.active) {
+                    <button (click)="onSort(col, $index)">
+                      <span
+                        [innerHTML]="
+                          !col.sortable?.order
+                            ? typeOrderSort.asc
+                            : typeOrderSort[col.sortable?.order!]
+                        "
+                      >
+                      </span>
+                    </button>
+                  }
+                </th>
+              }
+            </tr>
+          </thead>
+
+          <tbody [class.table-empty]="isEmpty">
+            @if (isEmpty) {
+              <tr>
+                <td [attr.colspan]="columns().length" class="h-[100px]"></td>
+              </tr>
+            } @else {
+              @for (row of paginatedData; track $index) {
+                <tr>
+                  @for (col of columns(); track $index) {
+                    <td
+                      class="{{ col?.colStyle }} {{ col?.cellClass }}"
+                      [class.sticky]="col.stickyOn"
+                    >
+                      @if (col.template) {
+                        <ng-container
+                          *ngTemplateOutlet="col.template; context: { $implicit: row }"
+                        ></ng-container>
+                      } @else {
+                        <div [innerHTML]="row[col.key]"></div>
+                      }
+                    </td>
+                  }
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <o-paginator
+        [totalItems]="totalItems()"
+        [itemsPerPage]="itemsPerPage()"
+        [currentPage]="currentPage()"
+        (pageChange)="onPageChange($event)"
+        (itemsPerPageChange)="onItemsPerPageChange($event)"
+        [itemsPerPageOptions]="itemsPerPageOptions()"
+      />
+    </div>
+  </div>
+
+  @if (!data().length) {
+    <div
+      class="w-full h-full absolute top-0 flex items-center justify-center bg-black text-gray-800 bg-opacity-15 shadow-md text-xs"
+    >
+      Sin resultados
+    </div>
+  }
+</div>

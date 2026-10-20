@@ -1,0 +1,42 @@
+<!-- Agregamos [ngClass] al contenedor principal -->
+<div class="stat-card" [ngClass]="{'is-single-centered': card().mode === 'single'}">
+  <div class="stat-header">
+    <app-icon [iconName]="card().icon" size="lg" />
+    <span class="stat-title">{{ card().title }}</span>
+  </div>
+
+  @if (card().mode === 'split') {
+  <div class="stat-split">
+    <button type="button" class="stat-side" (click)="onSideClick(card().left!)">
+      <span class="stat-value" [ngClass]="valueClass(card().left!)">
+        {{ displayValue(card().left!) }}
+      </span>
+      <span class="badge" [ngClass]="badgeClass(card().left!)">
+        {{ levelLabel(card().left!) }}
+      </span>
+    </button>
+
+    <div class="stat-divider"></div>
+
+    <button type="button" class="stat-side" (click)="onSideClick(card().right!)">
+      <span class="stat-value" [ngClass]="valueClass(card().right!)">
+        {{ displayValue(card().right!) }}
+      </span>
+      <span class="badge" [ngClass]="badgeClass(card().right!)">
+        {{ levelLabel(card().right!) }}
+      </span>
+    </button>
+  </div>
+  } @else {
+  <div class="stat-single">
+    <span class="stat-value text-gray-900">{{ card().single!.count }}</span>
+    <span class="badge" [ngClass]="badgeClass(card().single!)">
+      {{ levelLabel(card().single!) }}
+    </span>
+  </div>
+  }
+
+  <a class="stat-view-all" (click)="onViewAll($event)">
+    Ver kioscos <span class="chevron">›</span>
+  </a>
+</div>

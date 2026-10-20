@@ -1,0 +1,28 @@
+.primary {
+  @apply bg-primary text-white;
+}
+
+.disabled {
+  @apply bg-disabled text-white;
+}
+
+.secondary {
+  @apply bg-white text-ink border-solid border border-line-strong;
+}
+
+.secondary-sn-border {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl font-medium active:translate-y-px disabled:opacity-45 disabled:cursor-not-allowed disabled:active:translate-y-0 cursor-pointer px-3 py-1.5 text-xs text-muted hover:bg-surface-alt;
+}
+
+
+.primary:hover {
+  @apply bg-primary-hover;
+}
+
+.disabled:hover {
+  @apply bg-disabled;
+}
+
+.secondary:hover {
+  @apply bg-tint-muted;
+}

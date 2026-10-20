@@ -1,0 +1,51 @@
+.date-range-picker-field {
+  @apply flex flex-col w-full rounded-lg border border-gray-300 bg-white transition-all cursor-pointer select-none;
+
+  &:hover {
+    @apply border-converziia-primary;
+  }
+
+  &.active-focus {
+    @apply ring-1 ring-converziia-primary border-converziia-primary;
+  }
+
+  &.error-border {
+    @apply border-red-500 ring-red-500;
+  }
+
+  .date-range-picker-label {
+    @apply text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-1;
+  }
+
+  .input-containers {
+    @apply flex items-center justify-start gap-1 overflow-hidden;
+
+    input {
+      @apply bg-transparent outline-none text-base text-gray-700 font-medium cursor-pointer w-[90px];
+
+      &::placeholder {
+        @apply text-gray-400 font-normal;
+      }
+
+      &:only-child {
+        @apply w-full;
+      }
+    }
+
+    span {
+      @apply text-gray-400 font-bold px-0.5;
+    }
+  }
+}
+
+.error-slot {
+  @apply min-h-[14px] mt-1 ml-1;
+}
+
+.error-text {
+  @apply text-red-500 font-semibold text-[11px] leading-none opacity-0 transition-opacity duration-200;
+}
+
+.error-text.visible {
+  @apply opacity-100;
+}

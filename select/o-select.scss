@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+ul::-webkit-scrollbar {
+  width: 6px;
+}
+
+ul::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+ul::-webkit-scrollbar-thumb {
+  @apply bg-gray-200 rounded-full hover:bg-gray-300;
+}
+
+.error-slot {
+  @apply min-h-[14px] mt-1 ml-1;
+}
+
+.error-text {
+  @apply text-red-500 font-semibold text-[11px] leading-none opacity-0 transition-opacity duration-200;
+}
+
+.error-text.visible {
+  @apply opacity-100;
+}

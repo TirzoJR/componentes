@@ -1,0 +1,25 @@
+<div class="flex flex-col w-full font-body">
+  @if (label()) {
+  <span class="text-[#797980] text-sm font-medium ml-1 mb-4">{{ label() }}</span>
+  }
+
+  <div [ngClass]="inline() ? 'flex flex-wrap gap-6' : 'flex flex-col gap-4'">
+    @for (option of options(); track option.value) {
+    <label class="relative flex items-center cursor-pointer group select-none" [class.opacity-50]="disabled()">
+      <input type="radio" [name]="name()" [value]="option.value" [checked]="value() === option.value"
+        [disabled]="disabled()" (change)="select(option.value)"
+        class="w-5 h-5 border-gray-300 accent-converziia-secondary focus:ring-converziia-secondary transition-all" />
+
+      <span class="ml-2 text-sm text-gray-600 group-hover:text-converziia-primary transition-colors">
+        {{ option.label }}
+      </span>
+    </label>
+    }
+  </div>
+
+  @if (hasError) {
+  <p class="text-red-500 font-semibold text-[11px] mt-2 ml-1 animate-in fade-in">
+    Selección obligatoria
+  </p>
+  }
+</div>

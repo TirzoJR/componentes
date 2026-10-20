@@ -1,0 +1,33 @@
+<div class="container-input mt-2">
+  @if (field.label) {
+    <label [for]="id" class="text-sm font-medium text-ink-soft">
+      {{ field.label }}
+
+      @if (isRequired) {
+        <span class="text-danger"> *</span>
+      }
+    </label>
+  }
+
+  <div class="input-content pl-3">
+    <select
+      class="w-full min-h-11 bg-transparent outline-none cursor-pointer"
+      [id]="id"
+      [disabled]="isDisabled"
+      (change)="onChangeSelect($event)"
+      (blur)="onBlur()"
+      [class.text-disabled]="value === ''"
+    >
+      <option value="" disabled selected>Selecciona una opción</option>
+
+      @for (option of optionsInput; track option.value) {
+        <option class="text-ink" [value]="option.value" [selected]="option.value === value">
+          {{ option.label }}
+        </option>
+      }
+    </select>
+  </div>
+  @if (description) {
+    <p class="text-disabled ml-3 text-xs">{{ description }}</p>
+  }
+</div>

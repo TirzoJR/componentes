@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.input-form {
+  @apply grow relative flex flex-col font-body;
+
+  input {
+
+    &::placeholder {
+      @apply text-gray-400 font-normal;
+    }
+
+    &:disabled {
+      @apply opacity-60;
+    }
+  }
+}
+
+.error-slot {
+    @apply min-h-[14px] mt-1 ml-1;
+  }
+
+  .error-text {
+    @apply text-red-500 font-semibold text-[11px] leading-none opacity-0 transition-opacity duration-200;
+  }
+
+  .error-text.visible {
+    @apply opacity-100;
+  }

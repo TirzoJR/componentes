@@ -1,0 +1,27 @@
+<div class="relative inline-block group">
+  <button
+    (click)="chageStatus()"
+    [disabled]="isDisabled"
+    [ngClass]="{
+      'opacity-40 cursor-not-allowed pointer-events-none': isDisabled,
+    }"
+    type="button"
+    aria-label="Deshabilitar usuario"
+    class="grid size-9 place-items-center rounded-xl border transition-base border-line-strong bg-surface hover:border-danger/40 hover:bg-tint-danger"
+  >
+    @if (!isBlocked) {
+      <span class="material-symbols-outlined text-[#E04A32]"> do_not_disturb_on </span>
+    } @else {
+      <span class="material-symbols-outlined text-[#6B7280]"> check_circle </span>
+    }
+  </button>
+  <span
+    class="pointer-events-none absolute bottom-full mb-2 right-0 z-50 whitespace-nowrap rounded-xl bg-black px-2.5 py-2 text-sm text-white font-semibold opacity-0 transition-opacity group-hover:opacity-100"
+  >
+    {{ isBlocked ? 'Deshabilitar Usuario' : 'Habilitar Usuario' }}
+
+    @if (isDisabled) {
+      <p class="text-xs text-[#7c8595] mt-1">No puedes quitarte el acceso a ti mismo.</p>
+    }
+  </span>
+</div>

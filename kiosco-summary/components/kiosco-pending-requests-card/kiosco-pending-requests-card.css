@@ -1,0 +1,23 @@
+.pending-card {
+  @apply bg-white rounded-2xl p-5 border border-black/5 w-fit min-w-[220px];
+
+  .pending-title {
+    @apply text-sm text-gray-600 mb-2;
+  }
+
+  .pending-row {
+    @apply flex items-center gap-3;
+  }
+
+  .pending-count {
+    @apply text-lg font-bold text-gray-900;
+  }
+
+  .pending-arrow {
+    @apply flex items-center justify-center w-7 h-7 rounded-full bg-[#0f6f9e] text-white border-none cursor-pointer transition-transform duration-150;
+
+    &:hover {
+      @apply scale-105 bg-[#0c5d84];
+    }
+  }
+}

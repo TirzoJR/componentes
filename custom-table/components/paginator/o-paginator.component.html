@@ -1,0 +1,48 @@
+<div class="table-paginator-container">
+
+  <div class="table-paginator-content">
+
+    <div class="table-paginator-content-select">
+      <span class="table-paginator-select-label">Elementos por página: </span>
+      <select (change)="onItemsPerPageChange($any($event.target).value)" class="table-paginator-select"
+        [value]="itemsPerPage()">
+        @for (option of itemsPerPageOptions(); track option) {
+        <option [value]="option">{{ option }}</option>
+        }
+
+      </select>
+    </div>
+
+    <div class="table-paginator-items">
+      <span class="table-paginator-quantity">
+        {{ getRangeStart() }} - {{ getRangeEnd() }}
+      </span>
+      de
+      <span class="table-paginator-quantity">
+        {{ totalItems() }}
+      </span>
+    </div>
+
+    <div class="table-paginator-buttons-container">
+      <button (click)="goToFirstPage()" [disabled]="currentPage() === 1" class="table-paginator-button">
+        &lt;&lt;
+      </button>
+
+      <button (click)="onPageChange(currentPage() - 1)" [disabled]="currentPage() === 1" class="table-paginator-button">
+        &lt;
+      </button>
+
+      <button (click)="onPageChange(currentPage() + 1)" [disabled]="currentPage() * itemsPerPage() >= totalItems()"
+        class="table-paginator-button">
+        &gt;
+      </button>
+
+      <button (click)="goToLastPage()" [disabled]="currentPage() * itemsPerPage() >= totalItems()"
+        class="table-paginator-button">
+        &gt;&gt;
+      </button>
+    </div>
+
+  </div>
+
+</div>

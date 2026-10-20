@@ -1,0 +1,59 @@
+<div class="container-input mt-2">
+  @if (field.label) {
+    <label [for]="id" class="text-sm font-medium text-ink-soft mb-[1.5px]">
+      {{ field.label }}
+      @if (isRequired) {
+        <span class="text-danger"> *</span>
+      }
+    </label>
+  }
+  <div class="input-content">
+    @if (isSearch) {
+      <i class="ml-2 fa-solid fa-magnifying-glass" style="color: rgb(154, 156, 160)"></i>
+    }
+    <div
+      class="flex w-full items-center pr-2"
+      [ngClass]="{
+        'flex-row': iconPosition === 'left',
+        'flex-row-reverse': iconPosition === 'right',
+      }"
+    >
+      <ng-content class="mx-10" select="[icon]"></ng-content>
+      <input
+        [id]="id"
+        class="input-custom w-full"
+        [type]="type"
+        [placeholder]="placeholder"
+        (input)="onInput($event)"
+        (blur)="onBlur()"
+        [value]="value"
+        [disabled]="isDisabled"
+        [readonly]="isReadonly"
+        [attr.maxlength]="maxLength"
+        [attr.minlength]="minLength"
+      />
+
+      @if (isPasswordField) {
+        <button
+          type="button"
+          class="password-toggle-btn"
+          (click)="togglePasswordVisibility()"
+          [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+          tabindex="-1"
+        >
+          <i
+            class="fa-solid"
+            [ngClass]="showPassword() ? 'fa-eye' : 'fa-eye-slash'"
+            style="color: rgb(154, 156, 160)"
+          ></i>
+        </button>
+      }
+    </div>
+  </div>
+
+  @if (errorMessage) {
+    <p class="text-danger ml-3 text-xs">{{ errorMessage }}</p>
+  } @else {
+    <p class="text-disabled ml-3 text-xs">{{ description }}</p>
+  }
+</div>

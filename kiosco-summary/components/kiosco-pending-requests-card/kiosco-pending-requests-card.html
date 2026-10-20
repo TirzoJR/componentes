@@ -1,0 +1,9 @@
+<div class="pending-card">
+  <p class="pending-title">Solicitudes sin atender</p>
+  <div class="pending-row">
+    <span class="pending-count">{{ count() }} solicitudes</span>
+    <button type="button" class="pending-arrow" (click)="onClick()" aria-label="Ver solicitudes">
+      <app-icon iconName="chevron_right" size="sm" />
+    </button>
+  </div>
+</div>

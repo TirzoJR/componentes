@@ -1,0 +1,77 @@
+@if (variant() === 'simple') {
+  <div
+    class="flex flex-col justify-between p-5 w-full flex-1 bg-white border border-gray-200 rounded-xl shadow-sm"
+  >
+    <h3 class="mb-3 text-xs font-bold tracking-wide text-gray-500 uppercase">
+      {{ title() }}
+    </h3>
+
+    <div>
+      <div class="text-2xl font-bold text-gray-900">
+        {{ value() }}
+      </div>
+      <p class="mt-1 text-sm text-gray-500 h-5">
+        {{ description() }}
+      </p>
+    </div>
+  </div>
+}
+
+@if (variant() === 'detailed') {
+  <div class="flex flex-col bg-white border border-gray-200 rounded-xl shadow-sm w-full">
+    <div class="px-6 py-4 border-b border-gray-100">
+      <h3 class="text-sm font-bold tracking-wide text-gray-800 uppercase">
+        {{ title() }}
+      </h3>
+    </div>
+
+    <div class="flex flex-wrap items-center justify-between gap-4 px-6 py-5">
+      <div class="flex items-center gap-4 flex-1">
+        <span class="text-3xl font-bold text-gray-900">
+          {{ value() }}
+        </span>
+
+        @if (status()) {
+          <span
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium border rounded-full"
+            [ngClass]="statusClasses()"
+          >
+            @if (status()?.type === 'success') {
+              <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path
+                  fill-rule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            }
+            {{ status()?.label }}
+          </span>
+        }
+
+        @if (description()) {
+          <p class="text-sm text-gray-500 max-w-xl leading-relaxed">
+            {{ description() }}
+          </p>
+        }
+      </div>
+
+      @if (actionButtonLabel()) {
+        <button
+          (click)="onAction()"
+          class="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 transition-colors bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-200"
+        >
+          <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+            />
+          </svg>
+          {{ actionButtonLabel() }}
+        </button>
+      }
+    </div>
+  </div>
+}

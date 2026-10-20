@@ -1,0 +1,51 @@
+.table-container {
+  @apply bg-white w-full overflow-x-auto relative rounded-t-2xl border-[1px] border-converziia-border-form;
+}
+
+table {
+  @apply w-full font-body border-collapse;
+
+  thead {
+    @apply text-sm font-semibold text-white bg-converziia-primary;
+
+    tr {
+      @apply h-[48px];
+
+      th {
+        @apply text-center font-semibold px-4 py-3 whitespace-nowrap;
+
+        &.sticky {
+          @apply right-0 bg-converziia-primary z-20;
+        }
+
+        button {
+          @apply cursor-pointer ml-1;
+        }
+      }
+    }
+  }
+
+  tbody {
+    @apply text-sm font-normal text-black bg-white;
+
+    tr {
+      @apply h-[35px] odd:bg-white even:bg-converziia-text-light;
+
+      &:hover {
+        @apply bg-converziia-text-light;
+      }
+
+      td {
+        @apply text-center px-4 py-3 whitespace-nowrap;
+
+        &.sticky {
+          @apply right-0 bg-inherit z-10;
+        }
+
+        &:hover {
+          background-color: inherit;
+        }
+      }
+    }
+  }
+}
